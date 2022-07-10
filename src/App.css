@@ -1,0 +1,298 @@
+/* Makes the link text white */
+.link {
+  color: white;
+}
+
+/* Contains the specifications for the background picture */
+body {
+  min-width: 100%;
+  /* min-height: 100%; */
+  /* position: fixed; */
+  background-size: cover;
+  background-position: cover;
+  background-image:url('../public/bg_img_gears.jpg');
+}
+
+/* Contains the specifications for the login form */
+.login-form {
+  padding: 2vh;
+  position: fixed;
+  background-color: white;
+  border-radius: 3vh;
+  left: 30vh;
+  top: 33vh;
+}
+
+/* Contains the specifications for the layout of the Title, Aside, Main, and Header */
+.main-container {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* This is for formatting and background-color in the Title container */
+.title {
+  min-height: 8vh;
+  flex-grow: 1;
+  display: flex;
+  border-radius:3vh;
+  background-color:blue;
+  margin: 1vh;
+}
+
+/* This is for formatting the title. The flex-grow gives the title more room. */
+.cardioCastle {
+  flex-grow: 5;
+  color: whitesmoke;  
+  padding: 12px;
+  margin: 10px;
+  font-size: 50px;
+  border-radius: 30px;
+}
+
+.Register {
+  margin-top: 5px;
+}
+
+/* This is for formatting the logout button. The flex-grow gives the button less room. */
+.logout {
+  flex-grow: 1;
+  padding-right: 20px;
+  margin: 20px;
+}
+
+/* This is for the bar on the side - this styling only applies when the screen is big. */
+aside {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  padding-left: 1vh;
+}
+
+.goal-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.write-goal {
+  margin-top: 2vh;
+}
+
+.textArea {
+  margin: 2vh;
+}
+
+.startGoal {
+  margin-bottom: 1vh;
+}
+
+.finishGoal {
+  margin-bottom: 1vh;
+}
+
+main {
+  flex-grow: 5;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: whitesmoke;
+  border-radius: 30px;
+  margin: 10px;
+}
+
+.welcome {
+  height: 20%;
+  padding: 10px;
+  background-color: white;
+  margin: 10px;
+  border-radius: 30px;
+  text-align: center;
+  flex-grow: 1;
+}
+
+.monthly-goal {
+  text-align: center;
+  background-color: white;
+  margin: 10px;
+  border-radius: 30px;
+  flex-grow: 5;
+}
+
+.main-container {
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.one-row {
+  flex-grow: 1;
+}
+
+.daily {
+  flex-grow: 5;
+  padding: 10px;
+  display: flex;
+  gap: 12px;
+  min-height: 100%;
+}
+
+.a {
+  background-color: blue;
+  border-radius: 30px;
+  margin: 10px;
+  min-height: 20vh;
+  text-align: center;
+}
+
+.b {
+  background-color:aquamarine;
+  border-radius: 30px;
+  margin: 10px;
+  text-align: center;
+}
+
+.c {
+  background-color: purple;
+  border-radius: 30px;
+  margin: 10px;
+  text-align: center;
+}
+
+.d {
+  background-color: greenyellow;
+  border-radius: 30px;
+  margin: 10px;
+  text-align: center;
+}
+
+.e {
+  background-color: yellow;
+  border-radius: 30px;
+  margin: 10px;
+  text-align: center;
+}
+
+.f {
+  background-color: orange;
+  border-radius: 30px;
+  margin: 10px;
+  text-align: center;
+}
+
+.g {
+  background-color: red;
+  border-radius: 30px;
+  margin: 10px;
+  text-align: center;
+}
+
+button {
+  border: transparent;
+  background-color:transparent;
+}
+
+.three-row {
+  flex-grow: 5;
+  padding: 10px;
+  gap: 12px;
+  background-color: lightslategray;
+  display: flex;
+  flex-direction: column;
+  border-top: solid .5px darkslategrey;
+}
+
+.dayHeader {
+  text-align: center;
+  font-size: 2em;
+  border-radius: 30px;
+}
+
+.stats {
+  display: flex;
+  justify-content: space-evenly; 
+  font-size: 2em;
+  font-family: sans-serif;
+  background-color: whitesmoke;
+  padding: 2vh;
+  border-radius: 30px;
+}
+
+.choiceSmiley {
+  text-align: center;
+  /* margin-left: -2em; */
+  background-color: whitesmoke;
+  padding: 2vh;
+  border-radius: 30px;
+}
+
+.feel {
+  font-size: 1.1em;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-top: 1vh;
+}
+
+.smiley {
+  max-height: 18vh;
+  margin: 1vh;
+  margin-top: 1vh;
+}
+
+.frownie {
+  max-height: 18vh;
+  margin: 1vh;
+  margin-top: 1vh;
+}
+
+.distanceDuration {
+  padding: 10px;
+  font-size: 1.1em;
+  font-family: Arial, Helvetica, sans-serif;
+  padding-left:4vh;
+  padding-right: 4vh;
+}
+
+.notesContainer {
+  padding-right: 8vh;
+  padding-left: 8vh;
+}
+
+.notes {
+  margin-top: 3vh;
+  font-size: 1.1em;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+  footer {
+  max-height: 10vh;
+  flex-grow: 1;
+  padding: 10px;
+  background-color: whitesmoke;
+  margin-top: 10px;
+} 
+
+@media (min-width: 750px) {
+  .title, footer {
+      width: 100%;
+  }
+}
+
+@media (min-width: 750px) {
+  .login-form {
+    left: 85vh;
+  }
+}
+
+@media (max-width: 750px) {
+  .smiley {
+    max-height: 15vh;
+  }
+}
+
+@media (max-width: 750px) {
+  .frownie {
+    max-height: 15vh;
+  }
+}

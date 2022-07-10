@@ -15,8 +15,8 @@
 |---------------|-----------|--------|----------|  
 | BANNER        | TEXT/IMG  | N/A    | READONLY |
 | MAIN IMAGE    | IMG       | N/A    | N/A      |
-| LOGIN INPUT   | TEXT INPUT| 250    | YES      |
-| PASSWORD INPUT| TEXT INPUT| 250    | YES      |
+| LOGIN INPUT   | TEXT INPUT| 255    | YES      |
+| PASSWORD INPUT| TEXT INPUT| 255    | YES      |
 | LOGIN BUTTON  | BUTTON    | N/A    | YES      |
 
 * PAGE: TEST INQUEST PROJECTS
@@ -26,12 +26,12 @@
 | BANNER        | TEXT/IMG  | N/A    | READONLY |
 | HANDLE NAME   | TEXT      | N/A    | READONLY |
 | CREATE BUTTON | BUTTON    | N/A    | YES      |
-| INQUEST LIST  | DROP DOWN | 250    | YES      |
+| INQUEST LIST  | DROP DOWN | 255    | YES      |
 | EDIT BUTTON   | BUTTON    | N/A    | YES      |
 | DELETE BUTTON | BUTTON    | N/A    | YES      |
-| INQUEST NAME  | TEXT INPUT| 250    | YES      |
-| INQUEST DESC  | TEXT INPUT| 1000   | NO       |
-| INQUEST NOTES | TEXT INPUT| 2000   | NO       |
+| INQUEST NAME  | TEXT INPUT| 255    | YES      |
+| INQUEST DESC  | TEXT INPUT| 255    | NO       |
+| INQUEST NOTES | TEXT INPUT| 255    | NO       |
 
 * PAGE: TEST ARTIFACT DEFINITIONS
 
@@ -40,12 +40,13 @@
 | BANNER        | TEXT/IMG  | N/A    | READONLY |
 | INQUEST NAME  | TEXT      | N/A    | READONLY |
 | CREATE BUTTON | BUTTON    | N/A    | YES      |
-| ARTIFACT GRID | GRID VIEW | 250    | YES      |
+| ARTIFACT GRID | GRID VIEW | N/A    | YES      |
 | EDIT BUTTON   | BUTTON    | N/A    | YES      |
 | DELETE BUTTON | BUTTON    | N/A    | YES      |
-| ARTIFACT NAME | TEXT INPUT| 250    | YES      |
-| ARTIFACT TYPE | TEXT INPUT| 50     | YES      |
-| ARTIFACT VALUE| TEXT INPUT| 2000   | NO       |
+| ARTIFACT NAME | TEXT INPUT| 255    | YES      |
+| ARTIFACT TYPE | TEXT INPUT| 255    | YES      |
+| ARTIFACT VALUE| TEXT INPUT| 255    | NO       |
+| ARTIFACT CODE | TEXT INPUT| 255    | YES      |
 
 ## PROJECT STATUS LOGS
 * CREATED READ ME FILE (07/05/2022)
