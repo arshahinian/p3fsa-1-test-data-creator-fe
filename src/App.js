@@ -15,18 +15,18 @@ function App(props) {
   let [inquestData, setInquestData] = useState('')
   let [isNewInquest, setIsNewInquest] = useState(false)
 
-  const BASE_API_URL = 'https://localhost:3000'
+  const BASE_API_URL = 'http://localhost:5000'
 
-  const HANDLES_API_URL = `${BASE_API_URL}/handles/`
-  const INQUESTS_API_URL = `${BASE_API_URL}/inquests/`
-  const ARTIFACTS_API_URL = `${BASE_API_URL}/artifacts/`
+  const HANDLES_API_URL = `${BASE_API_URL}/handles`
+  const INQUESTS_API_URL = `${BASE_API_URL}/inquests`
+  const ARTIFACTS_API_URL = `${BASE_API_URL}/artifacts`
 
   useEffect(() => {
     console.log("useEffect - API")
 		if(enteredHandles) {
       console.log(`useEffect - ${enteredHandles}`)
 			const fetchData = async () => {
-        let fetchString = HANDLES_API_URL + enteredHandles
+        let fetchString = HANDLES_API_URL + '/' + enteredHandles
         console.log(fetchString)				
         let response = await fetch(fetchString,{
 					crossDomain:true,
@@ -72,7 +72,8 @@ function App(props) {
 					crossDomain:true,
 					method: 'POST',
 					headers: {'Content-Type':'application/json','Access-Control-Allow-Origin':'*','Access-Control-Allow-Methods': 'POST'},          
-          body: JSON.stringify({'handle_name':newHandleName,'login_code':'NEW','password':defaultPassword,'modified_date':'05/05/2022'})
+          body: JSON.stringify({'handle_name':newHandleName,'login_code':'NEW','password':defaultPassword,'modified_date':'05/05/2022'}),
+          dataType: "json"
         })
         console.log(response)
         setMessage(response)
@@ -122,7 +123,7 @@ function App(props) {
           console.log(inquestName)
           
           const fetchExistingInquestData = async () => {
-            let fetchString = INQUESTS_API_URL + inquestName + "?handle_Id=" + handleId
+            let fetchString = INQUESTS_API_URL + '/' + inquestName + "?handle_Id=" + handleId
             let response = await fetch(fetchString,{
             crossDomain:true,
             method: 'GET',
@@ -151,7 +152,7 @@ function App(props) {
                 console.log(response)
                 setMessage(response)
                 const fetchNewInquestDataInfo = async () => {
-                  let fetchString = INQUESTS_API_URL + inquestName + "?handle_Id=" + handleId
+                  let fetchString = INQUESTS_API_URL + '/' + inquestName + "?handle_Id=" + handleId
                   let response = await fetch(fetchString,{
                     crossDomain:true,
                     method: 'GET',

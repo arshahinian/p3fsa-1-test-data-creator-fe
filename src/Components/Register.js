@@ -24,7 +24,7 @@ function Register(props) {
                 <Form.Control type="password" placeholder="Enter password"/>
             </Form.Group>
             <Button type="submit" variant="primary" onClick={function(e){
-                    props.handleNewHandle(e, enteredHandle)
+                    props.maneuverNewHandle(e, enteredHandle)
                     console.log("onClick")
                     console.log(enteredHandle)
                     }}><Link className="link" to="/Profile">Submit</Link>
