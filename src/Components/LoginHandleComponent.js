@@ -1,16 +1,17 @@
-import React from 'react';
-import { useState } from 'react';
-import { BrowserRouter as Router, Link, Routes, Route } from 'react-router-dom';
+import React, { useContext,useState } from "react";
+import AppContext from "../AppContext";
+import { Link } from 'react-router-dom';
 import { Button, Form } from 'react-bootstrap';
 
-function Register(props) {
+function LoginHandleComponent() {
     let [enteredHandle, setEnteredHandle] = useState('')
+    let appContext = useContext(AppContext);
     return (
     <Form className='login-form'>
         <div className="form-inner">
-            <h2>Register</h2>
+            <h2>Login</h2>
             <Form.Group className="mb-3" controlId="formBasicHandle">
-                <Form.Label>Create User Handle:</Form.Label>
+                <Form.Label>User Handle:</Form.Label>
                 <Form.Control type='text' placeholder="Enter User Handle"
                 onChange={
                     function(e){
@@ -20,18 +21,21 @@ function Register(props) {
                 }/>
             </Form.Group>
             <Form.Group className="mb-3" controlId='formBasicPassword'>
-                <Form.Label>Create Password:</Form.Label>
+                <Form.Label>Password:</Form.Label>
                 <Form.Control type="password" placeholder="Enter password"/>
             </Form.Group>
             <Button type="submit" variant="primary" onClick={function(e){
-                    props.maneuverNewHandle(e, enteredHandle)
+                    appContext.maneuverEnteredHandle(e, enteredHandle)
                     console.log("onClick")
                     console.log(enteredHandle)
-                    }}><Link className="link" to="/Profile">Submit</Link>
+                    }}>
+                <Link className='main' to="/Main">Login</Link>
             </Button>
+            <br />
+            <Link className="registar" to="/Register">Register</Link>                   
         </div>
     </Form>
     )
 }
 
-export default Register
+export default LoginHandleComponent

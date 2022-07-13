@@ -1,16 +1,16 @@
-import React from 'react';
-import Aside from './Aside.js'
-import TopBar from './TopBar.js'
+import React from "react";
+import MessagesComponent from './MessagesComponent.js'
+import BannerComponent from './BannerComponent.js'
 import ArtifactComponent from './ArtifactComponent'
 import InquestComponent from './InquestComponent'
 
-function Profile(props) {
+function MainComponent() {    
     return (
         <div className='main-container'>
-            <TopBar />
-            <Aside maneuverInquestData={props.maneuverInquestData} />
+            <BannerComponent />
+            <MessagesComponent />
             <main>
-                <InquestComponent/>
+                <InquestComponent />              
                 <ArtifactComponent/>
             </main>
             <footer>
@@ -20,4 +20,4 @@ function Profile(props) {
     )
 }
 
-export default Profile
+export default MainComponent

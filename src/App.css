@@ -1,5 +1,5 @@
-/* Makes the link text white */
-.link {
+/* Makes the main text white */
+.main {
   color: white;
 }
 
@@ -44,7 +44,7 @@ body {
 }
 
 /* This is for formatting the title. The flex-grow gives the title more room. */
-.cardioCastle {
+.testDataCreator {
   flex-grow: 5;
   color: whitesmoke;  
   padding: 12px;
@@ -53,7 +53,7 @@ body {
   border-radius: 30px;
 }
 
-.Register {
+.register {
   margin-top: 5px;
 }
 
@@ -72,13 +72,13 @@ aside {
   padding-left: 1vh;
 }
 
-.goal-form {
+.inquest-form {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
 }
 
-.write-goal {
+.write-inquest {
   margin-top: 2vh;
 }
 
@@ -86,11 +86,11 @@ aside {
   margin: 2vh;
 }
 
-.startGoal {
+.startInquest {
   margin-bottom: 1vh;
 }
 
-.finishGoal {
+.finishInquest {
   margin-bottom: 1vh;
 }
 

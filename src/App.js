@@ -1,12 +1,13 @@
 import './App.css';
 import React from "react"
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import LoginForm from "./Components/LoginForm";
-import Profile from "./Components/Profile";
-import TopBar from './Components/TopBar';
 import {useEffect, useState,Fragment } from 'react';
 import { useBootstrapPrefix } from 'react-bootstrap/esm/ThemeProvider';
-import Register from './Components/Register';
+import RegisterHandleComponent from './Components/RegisterHandleComponent';
+import LoginHandleComponent from './Components/LoginHandleComponent';
+import MainComponent from './Components/MainComponent'
+import AppContext from "./AppContext";
+
 
 function App(props) {
   let [enteredHandles, setEnteredHandles] = useState('')
@@ -202,30 +203,33 @@ function App(props) {
 		}
 	}
 
-  // let tbd = JSON.stringify(handleData)
-
-  // const adminHandle = {
-  //   handle_name: "admin",
-  //   password: "admin123"
-  // }
-
-  // const [handle, setHandle] = useState({handle_name: "", paswword: ""});
-  // const [error, setError] = useState("");
+  let appActions = {
+    maneuverEnteredHandle: maneuverEnteredHandle,
+    maneuverNewHandle: maneuverNewHandle,
+    maneuverInquestData: maneuverNewHandle,
+    maneuverInquestFinish: maneuverInquestFinish
+  }
 
   return (
 
     <div className='body'>
+      <AppContext.Provider value={appActions}>
       <Router>
         <div>
           <Routes>
             <Route path="/" element={
-              <Fragment><LoginForm maneuverEnteredHandle={maneuverEnteredHandle} maneuverNewHandle={maneuverNewHandle} /></Fragment>
-              } />
-            <Route path="/Profile" element={<Profile maneuverInquestData={maneuverInquestData} maneuverInquestFinish={maneuverInquestFinish}/>} />
-            <Route path="/Register" element={<Register maneuverNewHandle= {maneuverNewHandle}/>} />
+              <Fragment>
+                <LoginHandleComponent />
+              </Fragment>              
+              } 
+            />
+            <Route path="/Register" element={<RegisterHandleComponent />} />
+            <Route path="/Main" element={<MainComponent />} />
+           
           </Routes>
         </div>
       </Router>
+      </AppContext.Provider>
     </div>
   );
 }

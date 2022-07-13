@@ -1,15 +1,15 @@
-import React from 'react';
+import React, { useContext } from "react";
+import AppContext from "../AppContext";
 import { Button, Form } from 'react-bootstrap';
 import { useState } from 'react'
 
-function Profile(props) {
-    let [enteredInquest, setEnteredInquest] = useState('')
+function MessagesComponent(props) {   
 
     return (
     <aside>
         <h2 className='welcome'>Welcome Name</h2>
         <div className="project-inquest">
-            <Form className='inquest-form'>
+            {/* <Form className='inquest-form'>
                 <h2 className="write-inquest">Write a Inquest</h2> 
                 <div className="form-inner">
                     <Form.Group className="textArea" controlId="formBasicHandle">
@@ -37,10 +37,10 @@ function Profile(props) {
                             Finish Inquest
                     </Button>
                 </div>
-            </Form> 
+            </Form>  */}
         </div>
     </aside>
     )
 }
 
-export default Profile
+export default MessagesComponent
