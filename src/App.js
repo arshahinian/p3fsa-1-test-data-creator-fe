@@ -9,46 +9,69 @@ import MainComponent from './Components/MainComponent'
 import AppContext from "./AppContext";
 
 
-function App(props) {
+function App() {
+
+  /* GLOBAL SECTION */
+
+  const BASE_API_URL = 'http://localhost:5000'
   let [enteredHandles, setEnteredHandles] = useState('')
-	let [message, setMessage] = useState('Search for Music!')
+	let [message, setMessage] = useState('')
 	let [handleData, setHandleData] = useState({})
   let [inquestData, setInquestData] = useState('')
   let [isNewInquest, setIsNewInquest] = useState(false)
 
-  const BASE_API_URL = 'http://localhost:5000'
+  /* HANDLE SECTION */
 
   const HANDLES_API_URL = `${BASE_API_URL}/handles`
-  const INQUESTS_API_URL = `${BASE_API_URL}/inquests`
-  const ARTIFACTS_API_URL = `${BASE_API_URL}/artifacts`
 
-  useEffect(() => {
-    console.log("useEffect - API")
+  let useEffectLog = []
+  function appendUseEffectLog(value)
+  {
+    let methodName = 'useEffect';
+    useEffectLog.push(`${methodName}=> ${value}`)
+  }
+
+  function writeUseEffectLog()
+  {    
+    for(let i = 0; i < useEffectLog.length; i++)
+    {      
+      console.log(useEffectLog[i])
+    }
+    useEffectLog = []
+  }
+
+  useEffect(() => {  
+    appendUseEffectLog("Start")    
 		if(enteredHandles) {
-      console.log(`useEffect - ${enteredHandles}`)
+      appendUseEffectLog(`enteredHandles: ${enteredHandles}`)
 			const fetchData = async () => {
         let fetchString = HANDLES_API_URL + '/' + enteredHandles
-        console.log(fetchString)				
+        appendUseEffectLog(`fetchString: ${fetchString}`)        			
         let response = await fetch(fetchString,{
 					crossDomain:true,
 					method: 'GET',
 					headers: {'Content-Type':'application/json','Access-Control-Allow-Origin':'*'}})
-        console.log(response)
-        console.log(`fetch - ${response}`)
+        appendUseEffectLog(`response: ${response}`)
 				let resData = await response.json();
-        console.log(resData)
-				if (resData.id != null) {
-          console.log("HERE WE ARE")
-          console.log(resData)
-          console.log(typeof resData)
-					setHandleData(resData)
+        writeUseEffectLog()        
+        appendUseEffectLog(`resData: ${resData}`)
+				if (resData != null && resData.handle_id != null) {
+            appendUseEffectLog(`resData.handle_id: ${resData.handle_id}`)
+            appendUseEffectLog(`typeof resData: ${typeof resData}`)          
+            setHandleData(resData)
+            appendUseEffectLog("Success")
+            writeUseEffectLog()
 				} else {
-          console.log("are we here?")
-					setMessage('Not Found')
+            appendUseEffectLog('Response Data was Not Found!')
+            setMessage('There was a failure to communicate with the system at this time!')
+            appendUseEffectLog("Error")
+            writeUseEffectLog()
 				}
 			}
 			fetchData()
 		}
+    appendUseEffectLog("Finish")
+    writeUseEffectLog()
 	}, [enteredHandles])
 
   const maneuverEnteredHandle = (e, handleName) => {
@@ -83,6 +106,19 @@ function App(props) {
 			fetchData()
 		}
 	}
+
+  /* INQUEST SECTION */
+
+  const INQUESTS_API_URL = `${BASE_API_URL}/inquests`
+
+  /* ARTIFACT SECTION */
+ 
+  const ARTIFACTS_API_URL = `${BASE_API_URL}/artifacts`
+
+
+
+
+  
 
   const maneuverInquestData = (e, inquestName) => {
     let handleId = handleData.id
@@ -206,7 +242,7 @@ function App(props) {
   let appActions = {
     maneuverEnteredHandle: maneuverEnteredHandle,
     maneuverNewHandle: maneuverNewHandle,
-    maneuverInquestData: maneuverNewHandle,
+    maneuverInquestData: maneuverInquestData,
     maneuverInquestFinish: maneuverInquestFinish
   }
 
