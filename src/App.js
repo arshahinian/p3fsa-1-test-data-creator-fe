@@ -13,7 +13,7 @@ function App() {
 
   /* GLOBAL SECTION */
 
-  const BASE_API_URL = 'https://p3fsa-1-test-data-creator-be.herokuapp.com/'
+  const BASE_API_URL = 'https://p3fsa-1-test-data-creator-be.herokuapp.com'
   let [enteredHandles, setEnteredHandles] = useState('')
 	let [message, setMessage] = useState('')
 	let [handleData, setHandleData] = useState({})
