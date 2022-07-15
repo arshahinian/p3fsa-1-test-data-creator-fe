@@ -13,7 +13,7 @@ function App() {
 
   /* GLOBAL SECTION */
 
-  const BASE_API_URL = 'http://localhost:5000'
+  const BASE_API_URL = 'https://git.heroku.com/p3fsa-1-test-data-creator-be.git'
   let [enteredHandles, setEnteredHandles] = useState('')
 	let [message, setMessage] = useState('')
 	let [handleData, setHandleData] = useState({})
@@ -50,7 +50,8 @@ function App() {
         let response = await fetch(fetchString,{
 					crossDomain:true,
 					method: 'GET',
-					headers: {'Content-Type':'application/json','Access-Control-Allow-Origin':'*'}})
+					headers: {'Content-Type':'application/json','Access-Control-Allow-Origin':'*'}
+        })
         appendUseEffectLog(`response: ${response}`)
 				let resData = await response.json();
         writeUseEffectLog()        
