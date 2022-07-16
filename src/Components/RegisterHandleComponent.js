@@ -5,7 +5,7 @@ import { Button, Form } from 'react-bootstrap';
 
 function RegisterHandleComponent() {
     let appContext = useContext(AppContext);
-    let [enteredHandle, setEnteredHandle] = useState('')
+    let [enteredUserHandle, setEnteredUserHandle] = useState('')
     return (
     <Form className='login-form'>
         <div className="form-inner">
@@ -16,7 +16,7 @@ function RegisterHandleComponent() {
                 onChange={
                     function(e){
                         console.log("Did it go here")
-                        setEnteredHandle(e.target.value)
+                        setEnteredUserHandle(e.target.value)
                     }
                 }/>
             </Form.Group>
@@ -25,7 +25,7 @@ function RegisterHandleComponent() {
                 <Form.Control type="password" placeholder="Enter password"/>
             </Form.Group>
             <Button type="submit" variant="primary" onClick={function(e){
-                    appContext.maneuverNewHandle(e, enteredHandle)
+                    appContext.maneuverAddUserHandle(e, enteredUserHandle)
                     console.log("onClick")
                     console.log(enteredHandle)
                     }}><Link className="main" to="/Main">Submit</Link>

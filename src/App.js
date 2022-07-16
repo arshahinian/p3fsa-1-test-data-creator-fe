@@ -12,107 +12,193 @@ import AppContext from "./AppContext";
 function App() {
 
   /* GLOBAL SECTION */
-
   const BASE_API_URL = 'https://p3fsa-1-test-data-creator-be.herokuapp.com'
-  let [enteredHandles, setEnteredHandles] = useState('')
 	let [message, setMessage] = useState('')
-	let [handleData, setHandleData] = useState({})
-  let [inquestData, setInquestData] = useState('')
-  let [isNewInquest, setIsNewInquest] = useState(false)
 
-  /* HANDLE SECTION */
-
-  const HANDLES_API_URL = `${BASE_API_URL}/handles`
-
-  let useEffectLog = []
-  function appendUseEffectLog(value)
+  function getCurrentDateText()
   {
-    let methodName = 'useEffect';
-    useEffectLog.push(`${methodName}=> ${value}`)
+      let today = new Date();
+      let year = parseInt(today.getFullYear());
+      let month = parseInt(today.getMonth());
+      let day = parseInt(today.getDay());
+      let yearText = padZero(year);
+      let monthText = padZero(month);
+      let dayText = padZero(day);
+      let hour = parseInt(today.getHours());
+      let minute = parseInt(today.getMinutes());
+      let second = parseInt(today.getSeconds());
+      let hourText = padZero(hour);
+      let minuteText = padZero(minute);
+      let secondText = padZero(second);
+      let time = `${monthText}/${dayText}/${yearText} ${hourText}:${minuteText}:${secondText}`
+      return time;
   }
 
-  function writeUseEffectLog()
+  function padZero(value)
+  {
+      if(parseInt(value) > 9)
+      {
+          return value;
+      }
+      else
+      {
+          return `0${value}`
+      }    
+  }
+
+
+  /* USER HANDLE SECTION */
+  const API_URL_USER_HANDLES = `${BASE_API_URL}/handles`
+  let [handleData, setHandleData] = useState({})
+
+  /* USER HANDLE SECTION (LOOKUP) */
+  let [lookupUserHandle, setLookupUserHandle] = useState('')
+
+  let logLookupUserHandle = []
+  function pushlogLookupUserHandle(value)
+  {
+    let actionName = 'LookupUserHandle';
+    logLookupUserHandle.push(`${actionName}=> ${value}`)
+  }
+
+  function writeLogLookupUserHandle()
   {    
-    for(let i = 0; i < useEffectLog.length; i++)
+    for(let i = 0; i < logLookupUserHandle.length; i++)
     {      
-      console.log(useEffectLog[i])
+      console.log(logLookupUserHandle[i])
     }
-    useEffectLog = []
+    logLookupUserHandle = []
   }
-
+ 
   useEffect(() => {  
-    appendUseEffectLog("Start")    
-		if(enteredHandles) {
-      appendUseEffectLog(`enteredHandles: ${enteredHandles}`)
+    pushlogLookupUserHandle("Start")    
+		if(lookupUserHandle) {
+      pushlogLookupUserHandle(`lookupUserHandle: ${lookupUserHandle}`)
 			const fetchData = async () => {
-        let fetchString = HANDLES_API_URL + '/' + enteredHandles
-        appendUseEffectLog(`fetchString: ${fetchString}`)        			
+        let fetchString = API_URL_USER_HANDLES + '/' + lookupUserHandle
+        pushlogLookupUserHandle(`fetchString: ${fetchString}`)        			
         let response = await fetch(fetchString,{
 					crossDomain:true,
 					method: 'GET',
 					headers: {'Content-Type':'application/json','Access-Control-Allow-Origin':'*'}
         })
-        appendUseEffectLog(`response: ${response}`)
+        pushlogLookupUserHandle(`response: ${response}`)
 				let resData = await response.json();
         writeUseEffectLog()        
-        appendUseEffectLog(`resData: ${resData}`)
+        pushlogLookupUserHandle(`resData: ${resData}`)
 				if (resData != null && resData.handle_id != null) {
-            appendUseEffectLog(`resData.handle_id: ${resData.handle_id}`)
-            appendUseEffectLog(`typeof resData: ${typeof resData}`)          
-            setHandleData(resData)
-            appendUseEffectLog("Success")
-            writeUseEffectLog()
+          pushlogLookupUserHandle(`resData.handle_id: ${resData.handle_id}`)
+          pushlogLookupUserHandle(`typeof resData: ${typeof resData}`)          
+          setHandleData(resData)
+          pushlogLookupUserHandle("Success")
+          writeLogLookupUserHandle()
 				} else {
-            appendUseEffectLog('Response Data was Not Found!')
-            setMessage('There was a failure to communicate with the system at this time!')
-            appendUseEffectLog("Error")
-            writeUseEffectLog()
+          pushlogLookupUserHandle('Response Data was Not Found!')
+          setMessage('There was a failure to communicate with the system at this time!')
+          appendUseEffectLog("Error")
+          writeLogLookupUserHandle()
 				}
 			}
 			fetchData()
 		}
-    appendUseEffectLog("Finish")
-    writeUseEffectLog()
-	}, [enteredHandles])
+    pushlogLookupUserHandle("Finish")
+    writeLogLookupUserHandle()
+	}, [lookupUserHandle])
 
-  const maneuverEnteredHandle = (e, handleName) => {
+  const maneuverlookupUserHandle = (e, handleName) => {
 		e.preventDefault()
-    console.log(handleName)
-		setEnteredHandles(handleName)
+    pushlogLookupUserHandle(handleName)
+		setLookupUserHandle(handleName)
 	}
 
-  const maneuverNewHandle = (e, newHandleName) => {
+  /* USER HANDLE SECTION (ADD) */
+
+  let logAddUserHandle = []
+  function pushlogAddUserHandle(value)
+  {
+    let actionName = 'AddUserHandle';
+    logAddUserHandle.push(`${actionName}=> ${value}`)
+  }
+
+  function writeLogAddUserHandle()
+  {    
+    for(let i = 0; i < logAddUserHandle.length; i++)
+    {      
+      console.log(logAddUserHandle[i])
+    }
+    logAddUserHandle = []
+  }
+
+  const maneuverAddUserHandle = (e, addUserHandle) => {
 		e.preventDefault()
-    console.log(newHandleName)
-		if(newHandleName) {      
-      console.log(`maneuverNewHandle - ${newHandleName}`)
+    pushlogAddUserHandle(addUserHandle)
+		if(addUserHandle) {      
+      pushlogAddUserHandle(`addUserHandle: ${addUserHandle}`)
       
-      var defaultPassword = newHandleName.charAt(1) + newHandleName.length + newHandleName.charAt(newHandleName.length - 1) + '*'
-      console.log(`maneuverNewHandlePw - ${defaultPassword}`)
+      var defaultPassword = addUserHandle.charAt(1) + addUserHandle.length + addUserHandle.charAt(addUserHandle.length - 1) + '*'
+      pushlogAddUserHandle(`defaultPassword: ${defaultPassword}`)
 
 			let fetchData = async () => {
         let fetchString = HANDLES_API_URL
-        console.log(fetchString)				
+        pushlogAddUserHandle(`fetchString: ${fetchString}`)
+        var modifiedDate = getCurrentDateText()
+        pushlogAddUserHandle(`modifiedDate: ${modifiedDate}`)
         let response = await fetch(fetchString,{
 					crossDomain:true,
 					method: 'POST',
 					headers: {'Content-Type':'application/json','Access-Control-Allow-Origin':'*','Access-Control-Allow-Methods': 'POST'},          
-          body: JSON.stringify({'handle_name':newHandleName,'login_code':'NEW','password':defaultPassword,'modified_date':'05/05/2022'}),
+          body: JSON.stringify({'handle_name':addUserHandle,'login_code':'NEW','password':defaultPassword,'modified_date':modifiedDate}),
           dataType: "json"
         })
-        console.log(response)
+        pushlogAddUserHandle(`response: ${response}`)
+        writeLogAddUserHandle()
         setMessage(response)
-        setEnteredHandles(newHandleName)		
+        setLookupUserHandle(addUserHandle)		
 			}
 			fetchData()
+      writeLogAddUserHandle()
 		}
 	}
 
-  /* INQUEST SECTION */
+
+  /* USER HANDLE SECTION (EDIT) */
+
+  /* USER HANDLE SECTION (REMOVE) */
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  /* PROJECT INQUEST SECTION */
+
+  /* PROJECT INQUEST SECTION (LOOKUP) */
+
+  /* PROJECT INQUEST SECTION (ADD) */
+
+  /* PROJECT INQUEST SECTION (EDIT) */
+
+  /* PROJECT INQUEST SECTION (REMOVE) */
+
 
   const INQUESTS_API_URL = `${BASE_API_URL}/inquests`
+  let [inquestData, setInquestData] = useState('')
+  let [isNewInquest, setIsNewInquest] = useState(false)
 
-  /* ARTIFACT SECTION */
+  /* INQUEST ARTIFACT SECTION */
+
+  /* INQUEST ARTIFACT SECTION (LOOKUP) */
+
+  /* INQUEST ARTIFACT SECTION (ADD) */
+
+  /* INQUEST ARTIFACT SECTION (EDIT) */
+
+  /* INQUEST ARTIFACT SECTION (REMOVE) */
  
   const ARTIFACTS_API_URL = `${BASE_API_URL}/artifacts`
 
@@ -241,8 +327,8 @@ function App() {
 	}
 
   let appActions = {
-    maneuverEnteredHandle: maneuverEnteredHandle,
-    maneuverNewHandle: maneuverNewHandle,
+    maneuverlookupUserHandle: maneuverlookupUserHandle,
+    maneuverAddUserHandle: maneuverAddUserHandle,
     maneuverInquestData: maneuverInquestData,
     maneuverInquestFinish: maneuverInquestFinish
   }

@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 import { Button, Form } from 'react-bootstrap';
 
 function LoginHandleComponent() {
-    let [enteredHandle, setEnteredHandle] = useState('')
     let appContext = useContext(AppContext);
+    let [enteredUserHandle, setEnteredUserHandle] = useState('')    
     return (
     <Form className='login-form'>
         <div className="form-inner">
@@ -16,7 +16,7 @@ function LoginHandleComponent() {
                 onChange={
                     function(e){
                         console.log("Did it go here")
-                        setEnteredHandle(e.target.value)
+                        setEnteredUserHandle(e.target.value)
                     }
                 }/>
             </Form.Group>
@@ -25,7 +25,7 @@ function LoginHandleComponent() {
                 <Form.Control type="password" placeholder="Enter password"/>
             </Form.Group>
             <Button type="submit" variant="primary" onClick={function(e){
-                    appContext.maneuverEnteredHandle(e, enteredHandle)
+                    appContext.maneuverlookupUserHandle(e, enteredUserHandle)
                     console.log("onClick")
                     console.log(enteredHandle)
                     }}>
