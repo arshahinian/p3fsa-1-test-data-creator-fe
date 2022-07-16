@@ -27,7 +27,7 @@ function LoginHandleComponent() {
             <Button type="submit" variant="primary" onClick={function(e){
                     appContext.maneuverlookupUserHandle(e, enteredUserHandle)
                     console.log("onClick")
-                    console.log(enteredHandle)
+                    console.log(enteredUserHandle)
                     }}>
                 <Link className='main' to="/Main">Login</Link>
             </Button>

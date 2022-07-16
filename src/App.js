@@ -19,8 +19,8 @@ function App() {
   {
       let today = new Date();
       let year = parseInt(today.getFullYear());
-      let month = parseInt(today.getMonth());
-      let day = parseInt(today.getDay());
+      let month = parseInt(today.getMonth()+ 1);
+      let day = parseInt(today.getDate());
       let yearText = padZero(year);
       let monthText = padZero(month);
       let dayText = padZero(day);
@@ -30,19 +30,19 @@ function App() {
       let hourText = padZero(hour);
       let minuteText = padZero(minute);
       let secondText = padZero(second);
-      let time = `${monthText}/${dayText}/${yearText} ${hourText}:${minuteText}:${secondText}`
-      return time;
+      let value = `${monthText}/${dayText}/${yearText} ${hourText}:${minuteText}:${secondText}`
+      return value;
   }
 
   function padZero(value)
   {
       if(parseInt(value) > 9)
       {
-          return value;
+          return value.toString();
       }
       else
       {
-          return `0${value}`
+          return `0${value.toString()}`.toString()
       }    
   }
 
@@ -74,6 +74,7 @@ function App() {
     pushlogLookupUserHandle("Start")    
 		if(lookupUserHandle) {
       pushlogLookupUserHandle(`lookupUserHandle: ${lookupUserHandle}`)
+      pushlogLookupUserHandle(getCurrentDateText())
 			const fetchData = async () => {
         let fetchString = API_URL_USER_HANDLES + '/' + lookupUserHandle
         pushlogLookupUserHandle(`fetchString: ${fetchString}`)        			
@@ -84,7 +85,7 @@ function App() {
         })
         pushlogLookupUserHandle(`response: ${response}`)
 				let resData = await response.json();
-        writeUseEffectLog()        
+        writeLogLookupUserHandle()        
         pushlogLookupUserHandle(`resData: ${resData}`)
 				if (resData != null && resData.handle_id != null) {
           pushlogLookupUserHandle(`resData.handle_id: ${resData.handle_id}`)
@@ -95,7 +96,7 @@ function App() {
 				} else {
           pushlogLookupUserHandle('Response Data was Not Found!')
           setMessage('There was a failure to communicate with the system at this time!')
-          appendUseEffectLog("Error")
+          pushlogLookupUserHandle("Error")
           writeLogLookupUserHandle()
 				}
 			}
@@ -139,7 +140,7 @@ function App() {
       pushlogAddUserHandle(`defaultPassword: ${defaultPassword}`)
 
 			let fetchData = async () => {
-        let fetchString = HANDLES_API_URL
+        let fetchString = API_URL_USER_HANDLES
         pushlogAddUserHandle(`fetchString: ${fetchString}`)
         var modifiedDate = getCurrentDateText()
         pushlogAddUserHandle(`modifiedDate: ${modifiedDate}`)

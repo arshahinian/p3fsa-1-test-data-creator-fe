@@ -27,7 +27,7 @@ function RegisterHandleComponent() {
             <Button type="submit" variant="primary" onClick={function(e){
                     appContext.maneuverAddUserHandle(e, enteredUserHandle)
                     console.log("onClick")
-                    console.log(enteredHandle)
+                    console.log(enteredUserHandle)
                     }}><Link className="main" to="/Main">Submit</Link>
             </Button>
         </div>
