@@ -474,8 +474,8 @@ function App() {
 		e.preventDefault()
     pushlogLookupProjInquest("Start")    
     pushlogLookupProjInquest(getCurrentDateText())  
-		if(lookupUserHandle) {
-      pushlogLookupProjInquest(`pushlogLookupProjInquest: ${pushlogLookupProjInquest}`)      
+		if(lookupProjInquestName) {
+      pushlogLookupProjInquest(`lookupProjInquestName: ${lookupProjInquestName}`)      
 			const fetchData = async () => {
         let fetchString = API_URL_PROJ_INQUESTS + '/' + lookupProjInquestName
         pushlogLookupProjInquest(`fetchString: ${fetchString}`)        			
@@ -489,7 +489,7 @@ function App() {
         writeLogLookupProjInquest()        
         pushlogLookupProjInquest(`resData: ${resData}`)
 				if (resData != null && resData.inquest_id != null) {
-          pushlogLookupProjInquest(`resData.handle_id: ${resData.inquest_id}`)
+          pushlogLookupProjInquest(`resData.inquest_id: ${resData.inquest_id}`)
           pushlogLookupProjInquest(`typeof resData: ${typeof resData}`)          
           setProjInquestData(resData)
           pushlogLookupProjInquest("Success")
@@ -584,59 +584,75 @@ function App() {
 
   /* PROJECT INQUEST SECTION (EDIT) */
 
-  const maneuverEditProjInquest = (e, editProjInquestId, editProjInquestName, editProjInquestDesc, editProjInquestNote) => {
+  let logEditProjInquest = []
+  function pushlogEditProjInquest(value)
+  {
+    let actionName = 'EditProjInquest';
+    logEditProjInquest.push(`-${actionName}=> ${value}`)
+  }
+
+  function writeLogEditProjInquest()
+  {    
+    for(let i = 0; i < logEditProjInquest.length; i++)
+    {      
+      console.log(logEditProjInquest[i])      
+    }
+    logEditProjInquest = []
+  }
+
+  const maneuverEditProjInquest = (e, editProjInquestName, editProjInquestDesc, editProjInquestNote) => {
     appendSetMessage("Update Inquest")   
     e.preventDefault()
-    pushlogAddProjInquest(`editProjInquestName: ${editProjInquestName}`)
+    pushlogEditProjInquest(`editProjInquestName: ${editProjInquestName}`)
     let userHandleId = 0
     if(userHandleData.handle_id > 0)
     {
       userHandleId = userHandleData.handle_id
     }
-    pushlogAddProjInquest(`userHandleId: ${userHandleId}`)
-    writeLogAddProjInquest()
+    pushlogEditProjInquest(`userHandleId: ${userHandleId}`)
+    writeLogEditProjInquest()
 		if(editProjInquestName && userHandleId > 0) {     
       
-      pushlogAddProjInquest(`editProjInquestDesc: ${editProjInquestDesc}`)
-      pushlogAddProjInquest(`editProjInquestNote: ${editProjInquestNote}`)      
+      maneuverLookupProjInquest(e,editProjInquestName)
+
+      pushlogEditProjInquest(`editProjInquestDesc: ${editProjInquestDesc}`)
+      pushlogEditProjInquest(`editProjInquestNote: ${editProjInquestNote}`)      
 
 			let fetchData = async () => {
-        let fetchString = API_URL_PROJ_INQUESTS + '/' + editProjInquestId
-        pushlogAddProjInquest(`fetchString: ${fetchString}`)
+        let fetchString = API_URL_PROJ_INQUESTS + '/' + projInquestData.inquest_id
+        pushlogEditProjInquest(`fetchString: ${fetchString}`)
         var modifiedDate = getCurrentDateText()
-        pushlogAddProjInquest(`modifiedDate: ${modifiedDate}`)
+        pushlogEditProjInquest(`modifiedDate: ${modifiedDate}`)
         let response = await fetch(fetchString,{
 					crossDomain:true,
 					method: 'PUT',
 					headers: {'Content-Type':'application/json','Access-Control-Allow-Origin':'*','Access-Control-Allow-Methods': 'POST'},          
-          body: JSON.stringify({'inquest_id':editProjInquestId,'inquest_name':editProjInquestName,'inquest_desc':editProjInquestDesc
+          body: JSON.stringify({'inquest_id':projInquestData.inquest_id,'inquest_name':editProjInquestName,'inquest_desc':editProjInquestDesc
             ,'inquest_note':editProjInquestNote,'modified_date':modifiedDate, 'handle_id':userHandleId}),
           dataType: "json"
         })
-        pushlogAddProjInquest(`response: ${response}`)
+        pushlogEditProjInquest(`response: ${response}`)
         let resData = await response.json();
 
-        pushlogAddProjInquest(`resData: ${resData}`)
-        pushlogAddProjInquest(JSON.stringify(resData))
-        writeLogAddProjInquest()
+        pushlogEditProjInquest(`resData: ${resData}`)
+        pushlogEditProjInquest(JSON.stringify(resData))
+        writeLogEditProjInquest()
 				
-        if (resData != null && resData.inquest_id != null) {
-          pushlogAddProjInquest(`resData.inquest_id: ${resData.inquest_id}`)
-          pushlogAddProjInquest(`typeof resData: ${typeof resData}`)          
-          setProjInquestData(resData)
-          pushlogAddProjInquest("Success")
-          writeLogAddProjInquest()
+        if (resData != null ) {
+          pushlogEditProjInquest(`typeof resData: ${typeof resData}`)       
+          pushlogEditProjInquest("Success")
+          writeLogEditProjInquest()
 				} else {
-          pushlogAddProjInquest('Response Data was Not Found!')
-          pushlogAddProjInquest('There was a failure to communicate with the system at this time!')
-          pushlogAddProjInquest("Error")
-          writeLogAddProjInquest()
+          pushlogEditProjInquest('Response Data was Not Found!')
+          pushlogEditProjInquest('There was a failure to communicate with the system at this time!')
+          pushlogEditProjInquest("Error")
+          writeLogEditProjInquest()
 				}
         
         setLookupProjInquestName(editProjInquestName)		
 			}
 			fetchData()
-      writeLogAddProjInquest()
+      writeLogEditProjInquest()
 		}
   }
 

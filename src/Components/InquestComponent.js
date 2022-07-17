@@ -18,7 +18,7 @@ function InquestComponent() {
                 <Form className='inquestNameDescription'>
                     <Form.Group className="mb-3" controlId="formBasicName">
                         <Form.Label>Name:</Form.Label>
-                        <Form.Control type='text' placeholder="Limited to 255 characters..." onChange={
+                        <Form.Control type='text' placeholder={projInquestName}  onChange={
                             (e) => {
                                 let value = e.target.value                                
                                 setProjInquestName(value)
@@ -26,17 +26,17 @@ function InquestComponent() {
                     </Form.Group>
                     <Form.Group className="textArea1" controlId="formBasicDescription">
                         <Form.Label>Description:</Form.Label>
-                        <Form.Control type='text' placeholder="Limited to 85 characters..." onChange={
+                        <Form.Control type='text' placeholder={projInquestDesc1}  onChange={
                             (e) => {
                                 let value = e.target.value                                
                                 setProjInquestDesc1(value)
                             }}/>
-                        <Form.Control type='text' placeholder="Limited to 85 characters..." onChange={
+                        <Form.Control type='text' placeholder={projInquestDesc2}  onChange={
                             (e) => {
                                 let value = e.target.value                                
                                 setProjInquestDesc2(value)
                             }}/>
-                        <Form.Control type='text' placeholder="Limited to 85 characters..." onChange={
+                        <Form.Control type='text' placeholder={projInquestDesc3}  onChange={
                             (e) => {
                                 let value = e.target.value                                
                                 setProjInquestDesc3(value)
