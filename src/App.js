@@ -289,7 +289,7 @@ function App() {
     }
     else
     {    
-      setMessageZ(line)
+      setMessageA(line)
     }
   }
 
@@ -330,7 +330,8 @@ function App() {
   let [userHandleData, setUserHandleData] = useState({})
 
   /* USER HANDLE SECTION (LOOKUP) */
-  let [lookupUserHandle, setLookupUserHandle] = useState('')
+  let [lookupUserHandleName, setLookupUserHandleName] = useState('')
+  let [lookupUserHandlePassword, setLookupUserHandlePassword] = useState('')
 
   let logLookupUserHandle = []
   function pushlogLookupUserHandle(value)
@@ -351,10 +352,10 @@ function App() {
   useEffect(() => {  
     pushlogLookupUserHandle("Start")    
     appendSetMessage(getCurrentDateText())  
-		if(lookupUserHandle) {
-      pushlogLookupUserHandle(`lookupUserHandle: ${lookupUserHandle}`)      
+		if(lookupUserHandleName) {
+      pushlogLookupUserHandle(`lookupUserHandleName: ${lookupUserHandleName}`)      
 			const fetchData = async () => {
-        let fetchString = API_URL_USER_HANDLES + '/' + lookupUserHandle
+        let fetchString = API_URL_USER_HANDLES + '/' + lookupUserHandleName
         pushlogLookupUserHandle(`fetchString: ${fetchString}`)        			
         let response = await fetch(fetchString,{
 					crossDomain:true,
@@ -367,28 +368,53 @@ function App() {
         pushlogLookupUserHandle(`resData: ${resData}`)
 				if (resData != null && resData.handle_id != null) {
           pushlogLookupUserHandle(`resData.handle_id: ${resData.handle_id}`)
+          if(resData.password != lookupUserHandlePassword)
+          {
+            pushlogLookupUserHandle("Password Does NOT Match!")
+            appendSetMessage("Failure Lookup User")
+            setUserHandleData('')
+            setLookupUserHandleName('')
+            setLookupUserHandlePassword('')
+            pushlogLookupUserHandle("Failure")
+          }
+          else
+          {
+            pushlogLookupUserHandle("Password Does Match!")
+            setUserHandleData(resData)
+            pushlogLookupUserHandle("Success")
+          }
           pushlogLookupUserHandle(`typeof resData: ${typeof resData}`)          
-          setUserHandleData(resData)
-          pushlogLookupUserHandle("Success")
           writeLogLookupUserHandle()
+          appendSetMessage("Success Lookup User") 
 				} else {
           pushlogLookupUserHandle('Response Data was Not Found!')
           pushlogLookupUserHandle('There was a failure to communicate with the system at this time!')
           pushlogLookupUserHandle("Error")
           writeLogLookupUserHandle()
+          appendSetMessage("Failure Lookup User")
 				}
 			}
 			fetchData()
 		}
     pushlogLookupUserHandle("Finish")
     writeLogLookupUserHandle()
-	}, [lookupUserHandle])
+	}, [lookupUserHandleName])
 
-  const maneuverLookupUserHandle = (e, handleName) => {    
+  const maneuverLookupUserHandle = (e, userHandleName,userHandlePassword) => {    
     appendSetMessage("Looking Up User")
 		e.preventDefault()
-    pushlogLookupUserHandle(handleName)
-		setLookupUserHandle(handleName)    
+    pushlogLookupUserHandle(userHandleName)
+    if(userHandlePassword)
+    {
+      pushlogLookupUserHandle("Password was entered :)")
+    }
+    else
+    {
+      pushlogLookupUserHandle("Password was NOT entered :(")
+    }
+    writeLogLookupUserHandle()
+		setLookupUserHandleName(userHandleName)
+    setLookupUserHandlePassword(userHandlePassword)   
 	}
 
   /* USER HANDLE SECTION (ADD) */
@@ -409,15 +435,13 @@ function App() {
     logAddUserHandle = []
   }
 
-  const maneuverAddUserHandle = (e, addUserHandle) => {    
+  const maneuverAddUserHandle = (e, userHandleName,userHandlePassword) => {    
     appendSetMessage("Creating User")
 		e.preventDefault()
-    pushlogAddUserHandle(addUserHandle)
-		if(addUserHandle) {      
-      pushlogAddUserHandle(`addUserHandle: ${addUserHandle}`)
-      
-      var defaultPassword = addUserHandle.charAt(1) + addUserHandle.length + addUserHandle.charAt(addUserHandle.length - 1) + '*'
-      pushlogAddUserHandle(`defaultPassword: ${defaultPassword}`)
+    pushlogAddUserHandle(userHandleName)
+		if(userHandleName) {      
+      pushlogAddUserHandle(`userHandleName: ${userHandleName}`)      
+      pushlogAddUserHandle(`userHandlePassword: ${userHandlePassword}`)
 
 			let fetchData = async () => {
         let fetchString = API_URL_USER_HANDLES
@@ -428,13 +452,15 @@ function App() {
 					crossDomain:true,
 					method: 'POST',
 					headers: {'Content-Type':'application/json','Access-Control-Allow-Origin':'*','Access-Control-Allow-Methods': 'POST'},          
-          body: JSON.stringify({'handle_name':addUserHandle,'login_code':'NEW','password':defaultPassword,'modified_date':modifiedDate}),
+          body: JSON.stringify({'handle_name':userHandleName,'login_code':'NEW','password':userHandlePassword,'modified_date':modifiedDate}),
           dataType: "json"
         })
         pushlogAddUserHandle(`response: ${response}`)
         writeLogAddUserHandle()
         
-        setLookupUserHandle(addUserHandle)		
+        setLookupUserHandleName(userHandleName)
+        setLookupUserHandlePassword(userHandlePassword)
+        appendSetMessage("Success Creating User")		
 			}
 			fetchData()
       writeLogAddUserHandle()
@@ -494,11 +520,13 @@ function App() {
           setProjInquestData(resData)
           pushlogLookupProjInquest("Success")
           writeLogLookupProjInquest()
+          appendSetMessage("Success Lookup Inquest")
 				} else {
           pushlogLookupProjInquest('Response Data was Not Found!')
           pushlogLookupProjInquest('There was a failure to communicate with the system at this time!')
           pushlogLookupProjInquest("Error")
           writeLogLookupProjInquest()
+          appendSetMessage("Failure Lookup Inquest")
 				}
 			}
 			fetchData()
@@ -568,11 +596,13 @@ function App() {
           setProjInquestData(resData)
           pushlogAddProjInquest("Success")
           writeLogAddProjInquest()
+          appendSetMessage("Success Creating Inquest")
 				} else {
           pushlogAddProjInquest('Response Data was Not Found!')
           pushlogAddProjInquest('There was a failure to communicate with the system at this time!')
           pushlogAddProjInquest("Error")
           writeLogAddProjInquest()
+          appendSetMessage("Failure Creating Inquest")
 				}
         
         setLookupProjInquestName(addProjInquestName)		
@@ -642,11 +672,13 @@ function App() {
           pushlogEditProjInquest(`typeof resData: ${typeof resData}`)       
           pushlogEditProjInquest("Success")
           writeLogEditProjInquest()
+          appendSetMessage("Success Update Inquest")
 				} else {
           pushlogEditProjInquest('Response Data was Not Found!')
           pushlogEditProjInquest('There was a failure to communicate with the system at this time!')
           pushlogEditProjInquest("Error")
           writeLogEditProjInquest()
+          appendSetMessage("Failure Update Inquest")
 				}
         
         setLookupProjInquestName(editProjInquestName)		
@@ -713,11 +745,13 @@ function App() {
           pushlogKillProjInquest(`typeof resData: ${typeof resData}`)       
           pushlogKillProjInquest("Success")
           writeLogKillProjInquest()
+          appendSetMessage("Success Remove Inquest")
 				} else {
           pushlogKillProjInquest('Response Data was Not Found!')
           pushlogKillProjInquest('There was a failure to communicate with the system at this time!')
           pushlogKillProjInquest("Error")
           writeLogKillProjInquest()
+          pushlogKillProjInquest("Failure Remove Inquest")
 				}
         
         setLookupProjInquestName(killProjInquestName)		
