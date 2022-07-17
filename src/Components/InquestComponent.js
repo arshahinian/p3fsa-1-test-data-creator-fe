@@ -44,7 +44,8 @@ function InquestComponent() {
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicFeeler">
                         <Form.Label>Feeler:</Form.Label>
-                        <Form.Control type='text' placeholder={projInquestNote} />
+                        <br/>                       
+                        <Form.Label>{projInquestNote}</Form.Label>
                     </Form.Group>                  
                 </Form>                
                 <div className="choiceSmiley">
