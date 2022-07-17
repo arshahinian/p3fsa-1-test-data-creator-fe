@@ -25,7 +25,7 @@ function LoginHandleComponent() {
                 <Form.Control type="password" placeholder="Enter password"/>
             </Form.Group>
             <Button type="submit" variant="primary" onClick={function(e){
-                    appContext.maneuverlookupUserHandle(e, enteredUserHandle)
+                    appContext.maneuverLookupUserHandle(e, enteredUserHandle)
                     console.log("onClick")
                     console.log(enteredUserHandle)
                     }}>

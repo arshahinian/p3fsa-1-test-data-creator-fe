@@ -19,7 +19,7 @@
 | PASSWORD INPUT| TEXT INPUT| 255    | YES      |
 | LOGIN BUTTON  | BUTTON    | N/A    | YES      |
 
-* PAGE: TEST INQUEST PROJECTS
+* PAGE SECTION A: TEST INQUEST PROJECTS
 
 | SECTION       | DISP TYPE | LENGTH | REQUIRED |
 |---------------|-----------|--------|----------|  
@@ -33,13 +33,12 @@
 | INQUEST DESC  | TEXT INPUT| 255    | NO       |
 | INQUEST NOTES | TEXT INPUT| 255    | NO       |
 
-* PAGE: TEST ARTIFACT DEFINITIONS
+* PAGE SECTION B: TEST ARTIFACT LOGS
 
 | SECTION       | DISP TYPE | LENGTH | REQUIRED |
 |---------------|-----------|--------|----------|
 | BANNER        | TEXT/IMG  | N/A    | READONLY |
 | INQUEST NAME  | TEXT      | N/A    | READONLY |
-| CREATE BUTTON | BUTTON    | N/A    | YES      |
 | ARTIFACT GRID | GRID VIEW | N/A    | YES      |
 | EDIT BUTTON   | BUTTON    | N/A    | YES      |
 | DELETE BUTTON | BUTTON    | N/A    | YES      |
@@ -50,3 +49,8 @@
 
 ## PROJECT STATUS LOGS
 * CREATED READ ME FILE (07/05/2022)
+
+## REASONS FOR CREATING THIS APPLICATION
+~~~
+As a professional working as a software engineer,  I frequently have to develop my own tools to assist me in doing my job more efficiently. This is often because of security issues with free tools that are available or because of the significant  cost to the company to buy tools.  In addition, I often find myself having to test the functionality of systems or applications. One big issue is that I do not have a place to put testing data I created for my testing of systems or applications, so that I can look back at it later to gather more information and analyze it after the fact. I would also like to use the testing data from one system/application for another system.
+~~~

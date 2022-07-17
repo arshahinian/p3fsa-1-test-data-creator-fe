@@ -92,7 +92,7 @@ function InquestComponent() {
                 </Button>
                 <br />
                 <Button classID="addInquestId" className="addInquest" type='submit' variant='primary' onClick={function(e){
-                        appContext.maneuverAddProjInquest(e, projInquestName,`${projInquestDesc1}${projInquestDesc2}${projInquestDesc3}`,projInquestNote)
+                        appContext.maneuverAddProjInquest(e, projInquestName,`${projInquestDesc1} ${projInquestDesc2} ${projInquestDesc3}`,projInquestNote)
                         console.log("onClickCreate")
                         console.log(projInquestName)
                         }}>
@@ -100,7 +100,7 @@ function InquestComponent() {
                 </Button>
                 <br />
                 <Button classID="editInquestId" className="editInquest" type='submit' variant='primary' onClick={function(e){
-                        appContext.maneuverEditProjInquest(e, projInquestName,`${projInquestDesc1}${projInquestDesc2}${projInquestDesc3}`,projInquestNote)
+                        appContext.maneuverEditProjInquest(e, projInquestName,`${projInquestDesc1} ${projInquestDesc2} ${projInquestDesc3}`,projInquestNote)
                         console.log("onClickUpdate")
                         console.log(projInquestName)
                         }}>

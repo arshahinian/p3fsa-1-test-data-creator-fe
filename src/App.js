@@ -25,6 +25,21 @@ function App() {
   let [messageI, setMessageI] = useState('')
   let [messageJ, setMessageJ] = useState('')
   let [messageK, setMessageK] = useState('')
+  let [messageL, setMessageL] = useState('')
+  let [messageM, setMessageM] = useState('')
+  let [messageN, setMessageN] = useState('')
+  let [messageO, setMessageO] = useState('')
+  let [messageP, setMessageP] = useState('')
+  let [messageQ, setMessageQ] = useState('')
+  let [messageR, setMessageR] = useState('')
+  let [messageS, setMessageS] = useState('')
+  let [messageT, setMessageT] = useState('')
+  let [messageU, setMessageU] = useState('')
+  let [messageV, setMessageV] = useState('')
+  let [messageW, setMessageW] = useState('')
+  let [messageX, setMessageX] = useState('')
+  let [messageY, setMessageY] = useState('')
+  let [messageZ, setMessageZ] = useState('')
 
   const maneuverDisplayMessages = (messageLetter) => 
   {
@@ -72,6 +87,66 @@ function App() {
     else if (messageLetter == "K")
     {
       message = messageK;
+    }
+    else if (messageLetter == "L")
+    {
+      message = messageL;
+    }
+    else if (messageLetter == "M")
+    {
+      message = messageM;
+    }
+    else if (messageLetter == "N")
+    {
+      message = messageN;
+    }
+    else if (messageLetter == "O")
+    {
+      message = messageO;
+    }
+    else if (messageLetter == "P")
+    {
+      message = messageP;
+    }
+    else if (messageLetter == "Q")
+    {
+      message = messageQ;
+    }
+    else if (messageLetter == "R")
+    {
+      message = messageR;
+    }
+    else if (messageLetter == "S")
+    {
+      message = messageS;
+    }
+    else if (messageLetter == "T")
+    {
+      message = messageT;
+    }
+    else if (messageLetter == "U")
+    {
+      message = messageU;
+    }
+    else if (messageLetter == "V")
+    {
+      message = messageV;
+    }
+    else if (messageLetter == "W")
+    {
+      message = messageW;
+    }
+    else if (messageLetter == "X")
+    {
+      message = messageX;
+    }
+    else if (messageLetter == "Y")
+    {
+      message = messageY;
+    }
+    else if (messageLetter == "Z")
+    {
+      message = messageZ;
     }
     else
     {
@@ -135,12 +210,86 @@ function App() {
     else if (messageK == line)
     {      
       setMessageK(newMessage)
+      setMessageL(line)      
+    }
+    else if (messageL == line)
+    {      
+      setMessageL(newMessage)
+      setMessageM(line)      
+    }
+    else if (messageM == line)
+    {      
+      setMessageM(newMessage)
+      setMessageN(line)      
+    }
+    else if (messageN == line)
+    {      
+      setMessageN(newMessage)
+      setMessageO(line)      
+    }
+    else if (messageO == line)
+    {      
+      setMessageO(newMessage)
+      setMessageP(line)      
+    }
+    else if (messageP == line)
+    {      
+      setMessageP(newMessage)
+      setMessageQ(line)      
+    }
+    else if (messageQ == line)
+    {      
+      setMessageQ(newMessage)
+      setMessageR(line)      
+    }
+    else if (messageR == line)
+    {      
+      setMessageR(newMessage)
+      setMessageS(line)      
+    }
+    else if (messageS == line)
+    {      
+      setMessageS(newMessage)
+      setMessageT(line)      
+    }
+    else if (messageT == line)
+    {      
+      setMessageT(newMessage)
+      setMessageU(line)      
+    }
+    else if (messageU == line)
+    {      
+      setMessageU(newMessage)
+      setMessageV(line)      
+    }
+    else if (messageV == line)
+    {      
+      setMessageV(newMessage)
+      setMessageW(line)      
+    }
+    else if (messageW == line)
+    {      
+      setMessageW(newMessage)
+      setMessageX(line)      
+    }
+    else if (setMessageX == line)
+    {      
+      setMessageX(newMessage)
+      setMessageY(line)      
+    }
+    else if (setMessageY == line)
+    {      
+      setMessageY(newMessage)
+      setMessageZ(line)      
+    }
+    else if (setMessageZ == line)
+    {      
+      setMessageZ(newMessage)
       setMessageA(line)      
     }
     else
-    {      
-      setMessageJ("Messaging Error!")
-      setMessageK(line)
+    {    
+      setMessageZ(line)
     }
   }
 
@@ -200,9 +349,8 @@ function App() {
   }
  
   useEffect(() => {  
-    pushlogLookupUserHandle("Start")
-    appendSetMessage(getCurrentDateText())
-    appendSetMessage("Looking Up User")   
+    pushlogLookupUserHandle("Start")    
+    appendSetMessage(getCurrentDateText())  
 		if(lookupUserHandle) {
       pushlogLookupUserHandle(`lookupUserHandle: ${lookupUserHandle}`)      
 			const fetchData = async () => {
@@ -236,8 +384,7 @@ function App() {
     writeLogLookupUserHandle()
 	}, [lookupUserHandle])
 
-  const maneuverlookupUserHandle = (e, handleName) => {
-    appendSetMessage(getCurrentDateText())
+  const maneuverLookupUserHandle = (e, handleName) => {    
     appendSetMessage("Looking Up User")
 		e.preventDefault()
     pushlogLookupUserHandle(handleName)
@@ -262,8 +409,7 @@ function App() {
     logAddUserHandle = []
   }
 
-  const maneuverAddUserHandle = (e, addUserHandle) => {
-    appendSetMessage(getCurrentDateText())
+  const maneuverAddUserHandle = (e, addUserHandle) => {    
     appendSetMessage("Creating User")
 		e.preventDefault()
     pushlogAddUserHandle(addUserHandle)
@@ -297,16 +443,69 @@ function App() {
 
   /* USER HANDLE SECTION (EDIT) */
 
-  /* USER HANDLE SECTION (REMOVE) */
   
   /* PROJECT INQUEST SECTION */
 
   const API_URL_PROJ_INQUESTS = `${BASE_API_URL}/inquests`
-  let [inquestData, setInquestData] = useState('')
-  let [isNewInquest, setIsNewInquest] = useState(false)
+  let [projInquestData, setProjInquestData] = useState('')
 
   /* PROJECT INQUEST SECTION (LOOKUP) */
   let [lookupProjInquestName, setLookupProjInquestName] = useState('')
+
+  let logLookupProjInquest = []
+  function pushlogLookupProjInquest(value)
+  {
+    let actionName = 'LookupProjInquest';
+    logLookupProjInquest.push(`-${actionName}=> ${value}`)
+  }
+
+  function writeLogLookupProjInquest()
+  {    
+    for(let i = 0; i < logLookupProjInquest.length; i++)
+    {      
+      console.log(logLookupProjInquest[i])      
+    }
+    logLookupProjInquest = []
+  }
+
+  const maneuverLookupProjInquest = (e,lookupProjInquestName) =>
+  {
+    appendSetMessage("Lookup Inquest")
+		e.preventDefault()
+    pushlogLookupProjInquest("Start")    
+    pushlogLookupProjInquest(getCurrentDateText())  
+		if(lookupUserHandle) {
+      pushlogLookupProjInquest(`pushlogLookupProjInquest: ${pushlogLookupProjInquest}`)      
+			const fetchData = async () => {
+        let fetchString = API_URL_PROJ_INQUESTS + '/' + lookupProjInquestName
+        pushlogLookupProjInquest(`fetchString: ${fetchString}`)        			
+        let response = await fetch(fetchString,{
+					crossDomain:true,
+					method: 'GET',
+					headers: {'Content-Type':'application/json','Access-Control-Allow-Origin':'*'}
+        })
+        pushlogLookupProjInquest(`response: ${response}`)
+				let resData = await response.json();
+        writeLogLookupProjInquest()        
+        pushlogLookupProjInquest(`resData: ${resData}`)
+				if (resData != null && resData.inquest_id != null) {
+          pushlogLookupProjInquest(`resData.handle_id: ${resData.inquest_id}`)
+          pushlogLookupProjInquest(`typeof resData: ${typeof resData}`)          
+          setProjInquestData(resData)
+          pushlogLookupProjInquest("Success")
+          writeLogLookupProjInquest()
+				} else {
+          pushlogLookupProjInquest('Response Data was Not Found!')
+          pushlogLookupProjInquest('There was a failure to communicate with the system at this time!')
+          pushlogLookupProjInquest("Error")
+          writeLogLookupProjInquest()
+				}
+			}
+			fetchData()
+		}
+    pushlogLookupProjInquest("Finish")
+    writeLogLookupProjInquest()
+  }
 
 
   /* PROJECT INQUEST SECTION (ADD) */
@@ -327,8 +526,7 @@ function App() {
     logAddProjInquest = []
   }
 
-  const maneuverAddProjInquest = (e, addProjInquestName,addProjInquestDesc,addProjInquestNote) => {
-    appendSetMessage(getCurrentDateText())
+  const maneuverAddProjInquest = (e, addProjInquestName,addProjInquestDesc,addProjInquestNote) => {    
     appendSetMessage("Creating Inquest")   
     e.preventDefault()
     pushlogAddProjInquest(`addProjInquestName: ${addProjInquestName}`)
@@ -359,14 +557,17 @@ function App() {
         })
         pushlogAddProjInquest(`response: ${response}`)
         let resData = await response.json();
-        writeLogAddProjInquest()        
+
         pushlogAddProjInquest(`resData: ${resData}`)
-				if (resData != null && resData.data != null) {
-          pushlogAddProjInquest(`resData.data: ${resData.data}`)
+        pushlogAddProjInquest(JSON.stringify(resData))
+        writeLogAddProjInquest()
+				
+        if (resData != null && resData.inquest_id != null) {
+          pushlogAddProjInquest(`resData.inquest_id: ${resData.inquest_id}`)
           pushlogAddProjInquest(`typeof resData: ${typeof resData}`)          
-          setInquestData(resData.data)
+          setProjInquestData(resData)
           pushlogAddProjInquest("Success")
-          writeLogLookupUserHandle()
+          writeLogAddProjInquest()
 				} else {
           pushlogAddProjInquest('Response Data was Not Found!')
           pushlogAddProjInquest('There was a failure to communicate with the system at this time!')
@@ -383,124 +584,65 @@ function App() {
 
   /* PROJECT INQUEST SECTION (EDIT) */
 
-  /* PROJECT INQUEST SECTION (REMOVE) */
+  const maneuverEditProjInquest = (e, editProjInquestId, editProjInquestName, editProjInquestDesc, editProjInquestNote) => {
+    appendSetMessage("Update Inquest")   
+    e.preventDefault()
+    pushlogAddProjInquest(`editProjInquestName: ${editProjInquestName}`)
+    let userHandleId = 0
+    if(userHandleData.handle_id > 0)
+    {
+      userHandleId = userHandleData.handle_id
+    }
+    pushlogAddProjInquest(`userHandleId: ${userHandleId}`)
+    writeLogAddProjInquest()
+		if(editProjInquestName && userHandleId > 0) {     
+      
+      pushlogAddProjInquest(`editProjInquestDesc: ${editProjInquestDesc}`)
+      pushlogAddProjInquest(`editProjInquestNote: ${editProjInquestNote}`)      
 
-  
-
-  /* INQUEST ARTIFACT SECTION */
-
-  /* INQUEST ARTIFACT SECTION (LOOKUP) */
-
-  
-
-  /* INQUEST ARTIFACT SECTION (ADD) */
-
-  /* INQUEST ARTIFACT SECTION (EDIT) */
-
-  /* INQUEST ARTIFACT SECTION (REMOVE) */
- 
-  const ARTIFACTS_API_URL = `${BASE_API_URL}/artifacts`
-
-
-
-
-  
-
-  const maneuverInquestData = (e, inquestName) => {
-    let handleId = userHandleData.id
-    
-		e.preventDefault()
-    if(inquestName) {
-      console.log(' INQUEST NAME IS POPULATED ')
-      /* GET INQUESTS AND SEE IF THE HANDLE ALEADY HAS A INQUEST */
-      const fetchAllInquestData = async () => {
-        let fetchString = API_URL_PROJ_INQUESTS
+			let fetchData = async () => {
+        let fetchString = API_URL_PROJ_INQUESTS + '/' + editProjInquestId
+        pushlogAddProjInquest(`fetchString: ${fetchString}`)
+        var modifiedDate = getCurrentDateText()
+        pushlogAddProjInquest(`modifiedDate: ${modifiedDate}`)
         let response = await fetch(fetchString,{
-        crossDomain:true,
-        method: 'GET',
-        headers: {'Content-Type':'application/json','Access-Control-Allow-Origin':'*'}})
+					crossDomain:true,
+					method: 'PUT',
+					headers: {'Content-Type':'application/json','Access-Control-Allow-Origin':'*','Access-Control-Allow-Methods': 'POST'},          
+          body: JSON.stringify({'inquest_id':editProjInquestId,'inquest_name':editProjInquestName,'inquest_desc':editProjInquestDesc
+            ,'inquest_note':editProjInquestNote,'modified_date':modifiedDate, 'handle_id':userHandleId}),
+          dataType: "json"
+        })
+        pushlogAddProjInquest(`response: ${response}`)
         let resData = await response.json();
 
-        let handleHasInquest = false;
-
-        for(let i = 0;i<resData.length;i++)
-        {
-          console.log(resData[i])
-          if(resData[i] != null && resData[i].id != null)
-          {
-             if(resData[i].handle_id == handleId && resData[i].inquest_status == 1)
-             {
-              handleHasInquest = true;
-                setInquestData(resData[i]);
-             }
-          }
-        }
-
-        if (handleHasInquest) {
-          console.log("You already have a inquest finish it!")
-          
-        } else {    
+        pushlogAddProjInquest(`resData: ${resData}`)
+        pushlogAddProjInquest(JSON.stringify(resData))
+        writeLogAddProjInquest()
+				
+        if (resData != null && resData.inquest_id != null) {
+          pushlogAddProjInquest(`resData.inquest_id: ${resData.inquest_id}`)
+          pushlogAddProjInquest(`typeof resData: ${typeof resData}`)          
+          setProjInquestData(resData)
+          pushlogAddProjInquest("Success")
+          writeLogAddProjInquest()
+				} else {
+          pushlogAddProjInquest('Response Data was Not Found!')
+          pushlogAddProjInquest('There was a failure to communicate with the system at this time!')
+          pushlogAddProjInquest("Error")
+          writeLogAddProjInquest()
+				}
         
-          /* GET INQUEST */
-          console.log(' GET INQUEST ')
-          console.log(inquestName)
-          
-          const fetchExistingInquestData = async () => {
-            let fetchString = API_URL_PROJ_INQUESTS + '/' + inquestName + "?handle_Id=" + handleId
-            let response = await fetch(fetchString,{
-            crossDomain:true,
-            method: 'GET',
-            headers: {'Content-Type':'application/json','Access-Control-Allow-Origin':'*'}})
-            let resData = await response.json();
-            if (resData != null && resData.id != null) {
-              console.log(' INQUEST NAME EXISTS ')
-              setInquestData(resData)
-              console.log(resData)
-            } else {
-              console.log(' INQUEST NAME NEW ')
-              setIsNewInquest(true);
-              console.log(' POST INQUEST ')
-              console.log(inquestName)
-              console.log(`New Inquest Name - ${inquestName}`)
-              /* POST / CREATE INQUEST */
-              let fetchNewInquestData = async () => {
-              let fetchString = API_URL_PROJ_INQUESTS
-              console.log(fetchString)				
-              let response = await fetch(fetchString,{
-                crossDomain:true,
-                method: 'POST',
-                headers: {'Content-Type':'application/json','Access-Control-Allow-Origin':'*','Access-Control-Allow-Methods': 'POST'},          
-                body: JSON.stringify({"inquest_name":inquestName,"modified_date":"05/01/2022","handle_id":handleId})
-                })
-                console.log(response)                
-                const fetchNewInquestDataInfo = async () => {
-                  let fetchString = API_URL_PROJ_INQUESTS + '/' + inquestName + "?handle_Id=" + handleId
-                  let response = await fetch(fetchString,{
-                    crossDomain:true,
-                    method: 'GET',
-                    headers: {'Content-Type':'application/json','Access-Control-Allow-Origin':'*'}})
-                  let resData = await response.json();
-                  if (resData != null && resData.id != null) {
-                    setInquestData(resData)
-                    console.log(resData)
-                  } else {
-                    console.log('No Inquest Found')
-                  }
-                }
-                fetchNewInquestDataInfo()
-              }
-              fetchNewInquestData()	
-            }
-          }
-          fetchExistingInquestData()            
-        }
-      }
-      fetchAllInquestData();      
-    }   
+        setLookupProjInquestName(editProjInquestName)		
+			}
+			fetchData()
+      writeLogAddProjInquest()
+		}
   }
 
+  /* PROJECT INQUEST SECTION (KILL) */
 
-  const maneuverInquestFinish = (e, inquestName) => {
+  const maneuverKillProjInquest = (e, inquestName) => {
     console.log("***handleinquestFinish***")
 		e.preventDefault()
     let handleId = userHandleData.id
@@ -515,7 +657,7 @@ function App() {
 					crossDomain:true,
 					method: 'PUT',
 					headers: {'Content-Type':'application/json','Access-Control-Allow-Origin':'*','Access-Control-Allow-Methods': 'PUT'},          
-          body: JSON.stringify({"inquest_id":inquestData.id,"inquest_name":inquestName,"inquest_status":0,"modified_date":"05/01/2022","handle_id":handleId})
+          body: JSON.stringify({"inquest_id":projInquestData.id,"inquest_name":inquestName,"inquest_status":0,"modified_date":"05/01/2022","handle_id":handleId})
         })
         console.log(response)                
 			}
@@ -523,14 +665,22 @@ function App() {
 		}
 	}
 
+  /* INQUEST ARTIFACT SECTION */
+
+  const API_URL_PROJ_ARTIFACTS = `${BASE_API_URL}/artifacts`
+
+  /* INQUEST ARTIFACT SECTION (LOOKUP) */
+
+
   
 
   let appActions = {
-    maneuverlookupUserHandle: maneuverlookupUserHandle,
+    maneuverLookupUserHandle: maneuverLookupUserHandle,
     maneuverAddUserHandle: maneuverAddUserHandle,
+    maneuverLookupProjInquest:maneuverLookupProjInquest,
     maneuverAddProjInquest: maneuverAddProjInquest,
-    maneuverInquestData: maneuverInquestData,
-    maneuverInquestFinish: maneuverInquestFinish,
+    maneuverEditProjInquest:maneuverEditProjInquest,
+    maneuverKillProjInquest: maneuverKillProjInquest,
     maneuverDisplayMessages: maneuverDisplayMessages
   }
 
