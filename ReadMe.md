@@ -2,7 +2,7 @@
 
 ## MUSE FOR CREATING THIS APPLICATION
 <p>
-As a professional working as a software engineer,  I frequently have to develop my own tools to assist me in doing my job more efficiently. This is often because of security issues with free tools that are available or because of the significant  cost to the company to buy tools.  In addition, I often find myself having to test the functionality of systems or applications. One big issue is that I do not have a place to put testing data I created for my testing of systems or applications, so that I can look back at it later to gather more information and analyze it after the fact. I would also like to use the testing data from one system/application for another system.
+As a professional working as a software engineer,  I frequently have to develop my own tools to assist me in doing my job more efficiently. This is often because of security issues with free tools that are available or because of the significant cost to the company to buy tools.  In addition, I often find myself having to test the functionality of systems or applications. One big issue is that I do not have a place to put testing notes I created for my testing of systems or applications, so that I can look back at it later to gather more information and analyze it after the fact. I would also like to use the testing notes from one application for another application as well.
 </p>
 
 ## WEB APPLICATION
