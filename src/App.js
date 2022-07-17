@@ -658,26 +658,72 @@ function App() {
 
   /* PROJECT INQUEST SECTION (KILL) */
 
-  const maneuverKillProjInquest = (e, inquestName) => {
-    console.log("***handleinquestFinish***")
-		e.preventDefault()
-    let handleId = userHandleData.id
-    console.log(inquestName)
-		if(inquestName) {      
-      console.log(`handleinquestFinish - ${inquestName}`)
-    
-      let fetchInquestFinishData = async () => {
-        let fetchString = API_URL_PROJ_INQUESTS
-        console.log(fetchString)				
+  let logKillProjInquest = []
+  function pushlogKillProjInquest(value)
+  {
+    let actionName = 'KillProjInquest';
+    logKillProjInquest.push(`-${actionName}=> ${value}`)
+  }
+
+  function writeLogKillProjInquest()
+  {    
+    for(let i = 0; i < logKillProjInquest.length; i++)
+    {      
+      console.log(logKillProjInquest[i])      
+    }
+    logKillProjInquest = []
+  }
+
+  const maneuverKillProjInquest = (e,killProjInquestName) => {
+    appendSetMessage("Remove Inquest")   
+    e.preventDefault()
+    pushlogKillProjInquest(`killProjInquestName: ${killProjInquestName}`)
+    let userHandleId = 0
+    if(userHandleData.handle_id > 0)
+    {
+      userHandleId = userHandleData.handle_id
+    }
+    pushlogKillProjInquest(`userHandleId: ${userHandleId}`)
+    writeLogKillProjInquest()
+		if(killProjInquestName && userHandleId > 0) {     
+      
+      maneuverLookupProjInquest(e,killProjInquestName)
+
+			let fetchData = async () => {
+        let fetchString = API_URL_PROJ_INQUESTS + '/' + projInquestData.inquest_id
+        pushlogKillProjInquest(`fetchString: ${fetchString}`)
+        var modifiedDate = getCurrentDateText()
+        pushlogKillProjInquest(`modifiedDate: ${modifiedDate}`)
         let response = await fetch(fetchString,{
 					crossDomain:true,
-					method: 'PUT',
-					headers: {'Content-Type':'application/json','Access-Control-Allow-Origin':'*','Access-Control-Allow-Methods': 'PUT'},          
-          body: JSON.stringify({"inquest_id":projInquestData.id,"inquest_name":inquestName,"inquest_status":0,"modified_date":"05/01/2022","handle_id":handleId})
+					method: 'DELETE',
+					headers: {'Content-Type':'application/json','Access-Control-Allow-Origin':'*','Access-Control-Allow-Methods': 'POST'},          
+          body: JSON.stringify({'inquest_id':projInquestData.inquest_id,'inquest_name':projInquestData.inquest_name,'inquest_desc':projInquestData.inquest_desc
+            ,'inquest_note':projInquestData.inquest_note,'modified_date':modifiedDate, 'handle_id':userHandleId}),
+          dataType: "json"
         })
-        console.log(response)                
+        pushlogKillProjInquest(`response: ${response}`)
+        let resData = await response.json();
+
+        pushlogKillProjInquest(`resData: ${resData}`)
+        pushlogKillProjInquest(JSON.stringify(resData))
+        writeLogKillProjInquest()
+				
+        if (resData != null ) {
+          pushlogKillProjInquest(`typeof resData: ${typeof resData}`)       
+          pushlogKillProjInquest("Success")
+          writeLogKillProjInquest()
+				} else {
+          pushlogKillProjInquest('Response Data was Not Found!')
+          pushlogKillProjInquest('There was a failure to communicate with the system at this time!')
+          pushlogKillProjInquest("Error")
+          writeLogKillProjInquest()
+				}
+        
+        setLookupProjInquestName(killProjInquestName)		
 			}
-			fetchInquestFinishData()
+			fetchData()
+      writeLogKillProjInquest()
 		}
 	}
 
