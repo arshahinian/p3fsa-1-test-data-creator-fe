@@ -87,7 +87,7 @@ function InquestComponent() {
                 <Button classID="addInquestId" className="addInquest" type='submit' variant='primary' onClick={function(e){
                         appContext.maneuverLookupProjInquest(e, projInquestName)
                         console.log("onClickCreate")
-                        console.log(projInquestName)
+                        console.log(projInquestName)                        
                         }}>
                             Lookup Inquest
                 </Button>
@@ -95,7 +95,7 @@ function InquestComponent() {
                 <Button classID="addInquestId" className="addInquest" type='submit' variant='primary' onClick={function(e){
                         appContext.maneuverAddProjInquest(e, projInquestName,`${projInquestDesc1} ${projInquestDesc2} ${projInquestDesc3}`,projInquestNote)
                         console.log("onClickCreate")
-                        console.log(projInquestName)
+                        console.log(projInquestName)                        
                         }}>
                             Create Inquest
                 </Button>
@@ -103,7 +103,7 @@ function InquestComponent() {
                 <Button classID="editInquestId" className="editInquest" type='submit' variant='primary' onClick={function(e){
                         appContext.maneuverEditProjInquest(e, projInquestName,`${projInquestDesc1} ${projInquestDesc2} ${projInquestDesc3}`,projInquestNote)
                         console.log("onClickUpdate")
-                        console.log(projInquestName)
+                        console.log(projInquestName)                        
                         }}>
                             Update Inquest
                 </Button>
@@ -111,7 +111,7 @@ function InquestComponent() {
                 <Button classID="killInquestId" className="killInquest" type='delete' onClick={function(e){
                     appContext.maneuverKillProjInquest(e, projInquestName)
                     console.log("onClickRemove")
-                    console.log(projInquestName)
+                    console.log(projInquestName)                    
                     }}>
                         Remove Inquest
                 </Button>

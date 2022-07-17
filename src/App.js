@@ -382,10 +382,10 @@ function App() {
             pushlogLookupUserHandle("Password Does Match!")
             setUserHandleData(resData)
             pushlogLookupUserHandle("Success")
+            appendSetMessage(`Welcome ${lookupUserHandleName}`) 
           }
           pushlogLookupUserHandle(`typeof resData: ${typeof resData}`)          
-          writeLogLookupUserHandle()
-          appendSetMessage("Success Lookup User") 
+          writeLogLookupUserHandle()          
 				} else {
           pushlogLookupUserHandle('Response Data was Not Found!')
           pushlogLookupUserHandle('There was a failure to communicate with the system at this time!')
@@ -520,7 +520,7 @@ function App() {
           setProjInquestData(resData)
           pushlogLookupProjInquest("Success")
           writeLogLookupProjInquest()
-          appendSetMessage("Success Lookup Inquest")
+          appendSetMessage(`INQUEST ID: ${resData.inquest_id}`)
 				} else {
           pushlogLookupProjInquest('Response Data was Not Found!')
           pushlogLookupProjInquest('There was a failure to communicate with the system at this time!')
