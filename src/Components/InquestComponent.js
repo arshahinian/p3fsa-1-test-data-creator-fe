@@ -4,64 +4,118 @@ import { Form, Button } from 'react-bootstrap';
 
 function InquestComponent() {
     let appContext = useContext(AppContext);
-    let [enteredInquest, setEnteredInquest] = useState('')
+    let [projInquestName, setProjInquestName] = useState('')
+    let [projInquestDesc1, setProjInquestDesc1] = useState('')
+    let [projInquestDesc2, setProjInquestDesc2] = useState('')
+    let [projInquestDesc3, setProjInquestDesc3] = useState('')
+    let [projInquestNote, setProjInquestNote] = useState('MEH...')
     return (
-        <div className="project-inquest">
-            <div className="inquestHeader">
+        <div className="three-row">
+            <div className="inquestHeaderSection">
                 <h2 className="inquestHeader">INQUEST</h2>
             </div>
             <div className="stats">                
                 <Form className='inquestNameDescription'>
-                <Form.Group className="mb-3" controlId="formBasicName">
-                    <Form.Label>Name:</Form.Label>
-                        <Form.Control type='text' placeholder="Limited to 255 characters..." />
-                    </Form.Group>
-                    <Form.Group className="mb-3" controlId="formBasicDescription">
-                        <Form.Label>Description:</Form.Label>
-                        <Form.Control type='text' placeholder="Limited to 255 characters..." />
-                    </Form.Group>                    
-                </Form>
-                <div className="InquestNoteContainer">
-                    <h3 className="notes">Inquest Note:</h3>
-                    <Form.Group className="textArea1" controlId="formBasicNote">
-                        <Form.Control as='textarea' rows={3} placeholder="Write a Note..." />
-                    </Form.Group>
-                </div>
-                <div className="choiceSmiley">
-                    <h3 className='feel'>How did the test go?</h3>
-                    <img className="smiley" src="../happy_dog.jpg"></img>
-                    <img className="frownie" src="../sad_dog.jpg"></img>
-                </div>
-            </div>
-            <Form className='inquest-form'>
-                <h2 className="write-inquest">Write a Inquest</h2> 
-                <div className="form-inner">
-                    <Form.Group className="textArea" controlId="formBasicHandle">
-                        <Form.Control as='textarea' rows={6} placeholder="Write a Inquest..." onChange={
+                    <Form.Group className="mb-3" controlId="formBasicName">
+                        <Form.Label>Name:</Form.Label>
+                        <Form.Control type='text' placeholder="Limited to 255 characters..." onChange={
                             (e) => {
-                                let value = e.target.value
-                                console.log(value)
-                                setEnteredInquest(value)
-                            }
-                        }/>
+                                let value = e.target.value                                
+                                setProjInquestName(value)
+                            }}/>
                     </Form.Group>
-                    <Button classID="startInquestId" className="startInquest" type='submit' variant='primary' onClick={function(e){
-                        appContext.maneuverInquestData(e, enteredInquest)
-                        console.log("onClick")
-                        console.log(enteredInquest)
-                        }}>
-                            Start Inquest
-                    </Button>
-                    <br />
-                    <Button classID="finishInquestId" className="finishInquest" type='delete' onClick={function(e){
-                        appContext.maneuverInquestFinish(e, enteredInquest)
-                        console.log("onClickFinish")
-                        console.log(enteredInquest)
-                        }}>
-                            Finish Inquest
-                    </Button>
+                    <Form.Group className="textArea1" controlId="formBasicDescription">
+                        <Form.Label>Description:</Form.Label>
+                        <Form.Control type='text' placeholder="Limited to 85 characters..." onChange={
+                            (e) => {
+                                let value = e.target.value                                
+                                setProjInquestDesc1(value)
+                            }}/>
+                        <Form.Control type='text' placeholder="Limited to 85 characters..." onChange={
+                            (e) => {
+                                let value = e.target.value                                
+                                setProjInquestDesc2(value)
+                            }}/>
+                        <Form.Control type='text' placeholder="Limited to 85 characters..." onChange={
+                            (e) => {
+                                let value = e.target.value                                
+                                setProjInquestDesc3(value)
+                            }}/>
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="formBasicFeeler">
+                        <Form.Label>Feeler:</Form.Label>
+                        <Form.Control type='text' placeholder={projInquestNote} />
+                    </Form.Group>                  
+                </Form>                
+                <div className="choiceSmiley">
+                    <h3 className='feel'>How is testing going, click on a picture to update feeler?</h3>
+                    <img className="smiley" src="../happy_dog.jpg" onClick={
+                            () => {              
+                                if(projInquestNote =='MEH...')
+                                {
+                                    setProjInquestNote('OK?')
+                                }
+                                else if (projInquestNote == 'OK?')
+                                {
+                                    setProjInquestNote('WONDERFUL!')
+                                }
+                                else
+                                {
+                                    setProjInquestNote('MEH...')
+                                }
+                            }}></img>
+                    <img className="frownie" src="../sad_dog.jpg"onClick={
+                            () => {                     
+                                if(projInquestNote =='MEH...')
+                                {
+                                    setProjInquestNote('OK?')
+                                }
+                                else if (projInquestNote == 'OK?')
+                                {
+                                    setProjInquestNote('POORLY!')
+                                }
+                                else
+                                {
+                                    setProjInquestNote('MEH...')
+                                }                                
+                            }}></img>
                 </div>
-            </Form> 
+                
+            </div>
+            <div className="stats">
+                <Button classID="addInquestId" className="addInquest" type='submit' variant='primary' onClick={function(e){
+                        appContext.maneuverLookupProjInquest(e, projInquestName)
+                        console.log("onClickCreate")
+                        console.log(projInquestName)
+                        }}>
+                            Lookup Inquest
+                </Button>
+                <br />
+                <Button classID="addInquestId" className="addInquest" type='submit' variant='primary' onClick={function(e){
+                        appContext.maneuverAddProjInquest(e, projInquestName,`${projInquestDesc1}${projInquestDesc2}${projInquestDesc3}`,projInquestNote)
+                        console.log("onClickCreate")
+                        console.log(projInquestName)
+                        }}>
+                            Create Inquest
+                </Button>
+                <br />
+                <Button classID="editInquestId" className="editInquest" type='submit' variant='primary' onClick={function(e){
+                        appContext.maneuverEditProjInquest(e, projInquestName,`${projInquestDesc1}${projInquestDesc2}${projInquestDesc3}`,projInquestNote)
+                        console.log("onClickUpdate")
+                        console.log(projInquestName)
+                        }}>
+                            Update Inquest
+                </Button>
+                <br />
+                <Button classID="killInquestId" className="killInquest" type='delete' onClick={function(e){
+                    appContext.maneuverKillProjInquest(e, projInquestName)
+                    console.log("onClickRemove")
+                    console.log(projInquestName)
+                    }}>
+                        Remove Inquest
+                </Button>
+            </div>
+
         </div>        
     )
 }

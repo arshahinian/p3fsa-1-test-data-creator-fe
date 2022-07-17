@@ -15,7 +15,7 @@ function LoginHandleComponent() {
                 <Form.Control type='text' placeholder="Enter User Handle"
                 onChange={
                     function(e){
-                        console.log("Did it go here")
+                        console.log("Setting Entered User Handle")
                         setEnteredUserHandle(e.target.value)
                     }
                 }/>

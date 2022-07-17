@@ -6,7 +6,7 @@ function ArtifactComponent() {
     let appContext = useContext(AppContext);
     return (
         <div className="three-row">
-            <div className="artifactHeader">                
+            <div className="artifactHeaderSection">                
                 <h2 className="artifactHeader">ARTIFACT</h2>
             </div>
             <div className="stats">                
