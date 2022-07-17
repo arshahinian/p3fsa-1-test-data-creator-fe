@@ -10,7 +10,7 @@ function ArtifactComponent() {
                 <h2 className="artifactHeader">ARTIFACTS</h2>
             </div>
             <div className="stats">                
-                                            
+                <p>An audit of the inquest changes is coming in a future release!</p>                                
             </div>
         </div>
     )
